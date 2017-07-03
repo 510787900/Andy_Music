@@ -27,26 +27,8 @@
     <!--使用自定义的Toolbar样式，去掉Actionbar 和 Title-->
     <style name="ColorTranslucentTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!--设置沉浸式状态栏-->
-        <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
-    </style>
-
-    <style name="ToolBarImageStyle">
-        <item name="android:layout_width">32dp</item>
-        <item name="android:layout_height">32dp</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_centerVertical">true</item>
-    </style>
-    <style name="ToolBarMenuStyle">
-        <item name="android:layout_width">32dp</item>
-        <item name="android:layout_height">32dp</item>
-        <item name="android:layout_marginLeft">5dp</item>
-        <item name="android:layout_marginRight">5dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_centerVertical">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
 </resources>

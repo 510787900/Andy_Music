@@ -1,8 +1,7 @@
-package com.andy.music;
+package com.andy.music.activity;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,9 +16,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.andy.adapter.CustomViewPagerAdapter;
-import com.andy.adapter.LvMenuItemAdapter;
-import com.andy.item.LvMenuItem;
+import com.andy.music.adapter.CustomViewPager;
+import com.andy.music.adapter.CustomViewPagerAdapter;
+import com.andy.music.adapter.LvMenuItemAdapter;
+import com.andy.music.fragment.FriendsFragment;
+import com.andy.music.fragment.TabNetPagerFragment;
+import com.andy.music.item.LvMenuItem;
+import com.andy.music.R;
 import com.andy.music.fragment.MainFragment;
 
 import java.util.ArrayList;
@@ -95,17 +98,17 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.bar_discover:
                     msg += "Click bar_discover";
                     toast(getApplicationContext(), msg);
-//                    customViewPager.setCurrentItem(0);
+                    customViewPager.setCurrentItem(0);
                     break;
                 case R.id.bar_music:
                     msg += "Click bar_music";
                     toast(getApplicationContext(), msg);
-//                    customViewPager.setCurrentItem(1);
+                    customViewPager.setCurrentItem(1);
                     break;
                 case R.id.bar_friends:
                     msg += "Click bar_friends";
                     toast(getApplicationContext(), msg);
-//                    customViewPager.setCurrentItem(2);
+                    customViewPager.setCurrentItem(2);
                     break;
                 case R.id.bar_search:
                     msg += "Click bar_search";
@@ -182,20 +185,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private CustomViewPager customViewPager;
     private void initAdapter() {
         tabs.add(bar_discover);
         tabs.add(bar_music);
         tabs.add(bar_friends);
-        final ViewPager customViewPager = (ViewPager) findViewById(R.id.main_viewpager);
+        customViewPager = (CustomViewPager) findViewById(R.id.main_viewpager);
         final MainFragment mainFragment = new MainFragment();
         final TabNetPagerFragment tabNetPagerFragment = new TabNetPagerFragment();
+        final FriendsFragment friendsFragment = new FriendsFragment();
         CustomViewPagerAdapter customViewPagerAdapter = new CustomViewPagerAdapter(getSupportFragmentManager());
         customViewPagerAdapter.addFragment(tabNetPagerFragment);
         customViewPagerAdapter.addFragment(mainFragment);
+        customViewPagerAdapter.addFragment(friendsFragment);
         customViewPager.setAdapter(customViewPagerAdapter);
         customViewPager.setCurrentItem(1);
         bar_music.setSelected(true);
-        customViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        customViewPager.addOnPageChangeListener(new CustomViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -213,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /** 更新控件状态 */
     private void switchTabs(int position) {
         for (int i = 0; i < tabs.size(); i++) {
             if (position == i) {

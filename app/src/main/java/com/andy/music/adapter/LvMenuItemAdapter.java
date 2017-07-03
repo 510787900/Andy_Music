@@ -1,4 +1,4 @@
-package com.andy.adapter;
+package com.andy.music.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
-import com.andy.item.LvMenuItem;
+import com.andy.music.item.LvMenuItem;
 import com.andy.music.R;
 
 import java.util.List;

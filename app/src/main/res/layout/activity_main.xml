@@ -4,6 +4,9 @@
     android:background="@color/normalBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!--沉浸式状态栏需要设置android:fitsSystemWindows="true"-->
+    <!--android:background="@color/normalBackground"
+    android:clipToPadding="false"-->
 
     <!--主页面布局_侧滑+主页面-->
     <include
@@ -27,9 +30,11 @@
         android:layout_gravity="start"
         android:paddingTop="0dp"
         android:background="#ffffffff"
-        android:fitsSystemWindows="true"
-        android:clipToPadding="true"
+        android:clipToPadding="false"
         android:divider="@null"
         android:listSelector="?attr/selectableItemBackground" />
+        <!--android:paddingTop="0dp"
+        android:fitsSystemWindows="true"
+        android:clipToPadding="false"-->
 
 </android.support.v4.widget.DrawerLayout>

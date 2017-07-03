@@ -1,4 +1,4 @@
-package com.andy.item;
+package com.andy.music.item;
 
 import android.text.TextUtils;
 
