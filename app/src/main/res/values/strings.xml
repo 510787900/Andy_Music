@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">App</string>
+    <string name="actionbar_disco">actionbar_disco</string>
+    <string name="actionbar_music">actionbar_music</string>
+    <string name="actionbar_friends">actionbar_friends</string>
+    <string name="actionbar_search">actionbar_search</string>
 </resources>
