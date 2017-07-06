@@ -1,12 +1,12 @@
 package com.andy.music.activity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -14,9 +14,9 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.andy.music.adapter.CustomViewPager;
+import com.andy.music.utils.LogUtils;
+import com.andy.music.widgit.CustomViewPager;
 import com.andy.music.adapter.CustomViewPagerAdapter;
 import com.andy.music.adapter.LvMenuItemAdapter;
 import com.andy.music.fragment.FriendsFragment;
@@ -29,10 +29,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//隐藏ActionBar区域
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //透明导航栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            //透明导航栏。因为底部设置一个可控的音乐播放控件，因此此处注释
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
     }
 
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView bar_menu, bar_discover, bar_music, bar_friends, bar_search;
     private ArrayList<ImageView> tabs = new ArrayList<>();
 
+    /** 初始化导航栏 */
     private void initToolbar(){
         drawerLayout = (DrawerLayout) findViewById(R.id.fd);
         toolBar = (Toolbar) findViewById(R.id.toolbar);
@@ -96,23 +97,23 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.openDrawer(Gravity.LEFT);
                     break;
                 case R.id.bar_discover:
-                    msg += "Click bar_discover";
-                    toast(getApplicationContext(), msg);
+//                    msg += "Click bar_discover";
+//                    toast(getApplicationContext(), msg);
                     customViewPager.setCurrentItem(0);
                     break;
                 case R.id.bar_music:
-                    msg += "Click bar_music";
-                    toast(getApplicationContext(), msg);
+//                    msg += "Click bar_music";
+//                    toast(getApplicationContext(), msg);
                     customViewPager.setCurrentItem(1);
                     break;
                 case R.id.bar_friends:
-                    msg += "Click bar_friends";
-                    toast(getApplicationContext(), msg);
+//                    msg += "Click bar_friends";
+//                    toast(getApplicationContext(), msg);
                     customViewPager.setCurrentItem(2);
                     break;
                 case R.id.bar_search:
                     msg += "Click bar_search";
-                    toast(getApplicationContext(), msg);
+                    LogUtils.toast(getApplicationContext(), msg);
 //                    final Intent intent = new Intent(MainActivity.this, NetSearchWordsActivity.class);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 //                    MainActivity.this.startActivity(intent);
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
     private void setUpDrawer() {
         mLvLeftMenu = (ListView) findViewById(R.id.id_lv_left_menu);
         LayoutInflater inflater = LayoutInflater.from(this);
-        mLvLeftMenu.addHeaderView(inflater.inflate(R.layout.nav_header_main, mLvLeftMenu, false));
+        mLvLeftMenu.addHeaderView(inflater.inflate(R.layout.widgit_lefemenu_header, mLvLeftMenu, false));
         mLvLeftMenu.setAdapter(new LvMenuItemAdapter(this, mItems));//侧滑菜单适配，传content和list
         mLvLeftMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -176,16 +177,17 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();*/
                         break;
                     default:
-                        toast(getApplicationContext(),"主题");
+                        LogUtils.toast(getApplicationContext(),"主题");
                         return;
 //                        break;
                 }
-                toast(getApplicationContext(),""+mItems.get(position-1).name);
+                LogUtils.toast(getApplicationContext(),""+mItems.get(position-1).name);
             }
         });
     }
 
     private CustomViewPager customViewPager;
+    /** 初始化滑动导航栏 */
     private void initAdapter() {
         tabs.add(bar_discover);
         tabs.add(bar_music);
@@ -219,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /** 更新控件状态 */
+    /** 更新滑动导航控件的选中状态 */
     private void switchTabs(int position) {
         for (int i = 0; i < tabs.size(); i++) {
             if (position == i) {
@@ -230,19 +232,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private Toast toast = null;
-    private void toast(Context context, String msg) {
-        toast(context, msg, Toast.LENGTH_SHORT);
-    }
-
-    private void toast(Context context, String msg, int len) {
-        if (toast != null) {
-//            toast.cancel();     //cancel 之后只显示一次？
-            toast.setText(msg);
-            toast.setDuration(len);
+    private long time = 0;
+    /**
+     * 双击返回桌面
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - time > 1500)) {
+                LogUtils.toast(this, "连按两次返回桌面");
+                time = System.currentTimeMillis();
+            } else {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                startActivity(intent);
+            }
+            return true;
         } else {
-            toast = Toast.makeText(context, msg, len);
+            return super.onKeyDown(keyCode, event);
         }
-        toast.show();
     }
 }

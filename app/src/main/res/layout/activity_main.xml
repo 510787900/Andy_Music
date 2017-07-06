@@ -4,13 +4,12 @@
     android:background="@color/normalBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--沉浸式状态栏需要设置android:fitsSystemWindows="true"-->
-    <!--android:background="@color/normalBackground"
-    android:clipToPadding="false"-->
+    <!--沉浸式状态栏需要设置android:fitsSystemWindows="true"。。。已在代码中设置-->
+    <!--android:clipToPadding="false"-->
 
     <!--主页面布局_侧滑+主页面-->
     <include
-        layout="@layout/activity"
+        layout="@layout/activity_main_front"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -21,7 +20,7 @@
         <!--android:layout_gravity="start"-->
         <!--android:fitsSystemWindows="true"-->
         <!--&gt;-->
-        <!--<include layout="@layout/nav_header_main"/>-->
+        <!--<include layout="@layout/widgit_playbar"/>-->
         <!--</android.support.design.widget.NavigationView>-->
     <ListView
         android:id="@+id/id_lv_left_menu"
@@ -33,8 +32,6 @@
         android:clipToPadding="false"
         android:divider="@null"
         android:listSelector="?attr/selectableItemBackground" />
-        <!--android:paddingTop="0dp"
-        android:fitsSystemWindows="true"
-        android:clipToPadding="false"-->
+        <!--android:fitsSystemWindows="true"-->
 
 </android.support.v4.widget.DrawerLayout>

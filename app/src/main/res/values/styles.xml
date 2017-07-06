@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/color_blue</item>
+        <item name="colorPrimaryDark">@color/color_blue_Dark</item>
+        <item name="colorAccent">@color/toolbar_color_red</item>
     </style>
 
     <!--使用自定义的Toolbar样式，去掉Actionbar 和 Title-->
@@ -14,12 +14,6 @@
         <!--<del><item name="android:windowNoTitle">true</item></del>-->
         <!-- 使用 API Level 22 编译的話，要拿掉前缀字 -->
         <item name="windowNoTitle">true</item>
-        <!-- Actionbar color -->
-        <!--<item name="colorPrimary">@color/toolbarBackground</item>-->
-        <!--Status bar color-->
-        <!--<item name="colorPrimaryDark">@color/toolbarBackground</item>-->
-        <!--Window color-->
-        <!--<item name="android:windowBackground">@color/dim_foreground_material_dark</item>-->
     </style>
     <!-- Base application theme. 替换AppTheme 为自己设置的样式 -->
     <style name="AppThemeNoTitle" parent="AppTheme.Base"></style>
@@ -47,6 +41,17 @@
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="FragmentPlayListImageStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:paddingBottom">13dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_gravity">center_vertical</item>
     </style>
 
 </resources>

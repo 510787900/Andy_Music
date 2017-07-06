@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@color/theme_color_common_section"
+    android:orientation="horizontal">
+    <!--创建、收藏的歌单.目录.可展开与收起-->
+
+    <ImageView
+        android:id="@+id/expand_img"
+        style="@style/FragmentPlayListImageStyle"
+        android:src="@drawable/list_icn_arr_right"
+        android:rotation="90" />
+
+    <TextView
+        android:id="@+id/expand_title"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="25dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/expand_img"
+        android:gravity="left|center"
+        android:textColor="@color/text_color_black"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/expand_menu"
+        style="@style/FragmentPlayListImageStyle"
+        android:src="@drawable/list_icn_more" />
+
+</LinearLayout>

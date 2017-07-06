@@ -5,32 +5,24 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/toolbar"
+        android:id="@+id/toolbar"
+        layout="@layout/widgit_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.andy.music.adapter.CustomViewPager
+    <com.andy.music.widgit.CustomViewPager
         android:layout_below="@+id/toolbar"
-
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
         <!--android:layout_above="@+id/nav_play"-->
-    <!--<FrameLayout-->
-    <!--android:orientation="vertical"-->
-    <!--android:id="@+id/fragment_container"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_below="@+id/toolbar"-->
-    <!--android:layout_above="@+id/nav_play">-->
-    <!--</FrameLayout>-->
+
     <FrameLayout
         android:layout_alignParentBottom="true"
         android:id="@+id/bottom_container"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="60dp" />
 
     <!--<include layout="@layout/bottom_nav"/>-->
-
 
 </RelativeLayout>

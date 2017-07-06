@@ -1,30 +1,6 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <!--使用自定义的Toolbar样式，去掉Actionbar 和 Title-->
-    <style name="AppTheme.Base" parent="Theme.AppCompat">
-        <item name="windowActionBar">false</item>
-        <!--<del><item name="android:windowNoTitle">true</item></del>-->
-        <!-- 使用 API Level 22 编译的話，要拿掉前缀字 -->
-        <item name="windowNoTitle">true</item>
-        <!-- Actionbar color -->
-        <!--<item name="colorPrimary">@color/toolbarBackground</item>-->
-        <!--Status bar color-->
-        <!--<item name="colorPrimaryDark">@color/toolbarBackground</item>-->
-        <!--Window color-->
-        <!--<item name="android:windowBackground">@color/dim_foreground_material_dark</item>-->
-    </style>
-    <!-- Base application theme. 替换AppTheme 为自己设置的样式 -->
-    <style name="AppThemeNoTitle" parent="AppTheme.Base"></style>
-
-    <!--使用自定义的Toolbar样式，去掉Actionbar 和 Title-->
+        <!--使用自定义的Toolbar样式，去掉Actionbar 和 Title-->
     <style name="ColorTranslucentTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!--设置沉浸式状态栏-->
         <item name="android:windowTranslucentStatus">false</item>

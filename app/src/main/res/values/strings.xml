@@ -4,4 +4,16 @@
     <string name="actionbar_music">actionbar_music</string>
     <string name="actionbar_friends">actionbar_friends</string>
     <string name="actionbar_search">actionbar_search</string>
+
+    <string name="sure_to_delete_music">确定删除歌曲吗</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+
+    <string name="local_music">本地音乐</string>
+    <string name="recent_play">最近播放</string>
+    <string name="local_manage">下载管理</string>
+    <string name="my_artist">我的歌手</string>
+    <string name="created_playlists">创建的歌单</string>
+    <string name="collect_playlists">收藏的歌单</string>
+
 </resources>

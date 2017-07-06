@@ -1,4 +1,4 @@
-package com.andy.music.adapter;
+package com.andy.music.widgit;
 
 import android.content.Context;
 import android.graphics.PointF;
@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * 自定义滑动适配器
+ * 滑动导航栏ViewPage
  * Created by Andy on 2017/7/3.
  */
 

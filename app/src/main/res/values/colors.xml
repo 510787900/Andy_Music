@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <!--ToolBar-->
+    <color name="toolbar_color_red">#FFD20000</color>
+    <color name="color_blue">#3F51B5</color>
+    <color name="color_blue_Dark">#303F9F</color>
 
     <!--主页面背景色-->
     <color name="normalBackground">#fff2f4f5</color>
-    <color name="toolbarBackground">#FFD20000</color>
+
+    <!-- 本地音乐图片和字体颜色 -->
+    <color name="theme_color_red">#d20000</color>
+    <color name="text_color_black">#FF000000</color>
+    <color name="subtitle_color_gray">#FF757575</color>
+
+    <color name="theme_color_common_section">#ffe6e8e9</color>
 
 </resources>
