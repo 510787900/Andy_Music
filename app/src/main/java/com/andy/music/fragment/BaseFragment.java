@@ -11,6 +11,7 @@ import com.andy.music.activity.BaseActivity;
 import com.andy.music.activity.MusicStateListener;
 
 /**
+ * 基础fragment
  * Created by Andy on 2017/7/3.
  */
 
@@ -61,6 +62,7 @@ public class BaseFragment extends Fragment implements MusicStateListener {
     public void changeTheme() {
     }
 
+    /** 刷新列表 */
     @Override
     public void reloadAdapter() {
 

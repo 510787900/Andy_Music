@@ -68,7 +68,8 @@ public class LvMenuItemAdapter extends BaseAdapter {
         switch (item.type) {
             case LvMenuItem.TYPE_NORMAL:
                 if (convertView == null) {
-                    convertView = mInflater.inflate(R.layout.design_drawer_item, parent, false);
+                    convertView = mInflater.inflate(
+                            R.layout.design_drawer_item, parent, false);
                 }
                 TextView itemView = (TextView) convertView;
                 itemView.setText(item.name);
@@ -77,19 +78,22 @@ public class LvMenuItemAdapter extends BaseAdapter {
                 // setIconColor(icon);
                 if (icon != null) {
                     icon.setBounds(0, 0, mIconSize, mIconSize);
-                    TextViewCompat.setCompoundDrawablesRelative(itemView, icon, null, null, null);
+                    TextViewCompat.setCompoundDrawablesRelative(
+                            itemView, icon, null, null, null);
                 }
                 break;
             case LvMenuItem.TYPE_NO_ICON:
                 if (convertView == null) {
-                    convertView = mInflater.inflate(R.layout.design_drawer_item_subheader, parent, false);
+                    convertView = mInflater.inflate(
+                            R.layout.design_drawer_item_subheader, parent, false);
                 }
                 TextView subHeader = (TextView) convertView;
                 subHeader.setText(item.name);
                 break;
             case LvMenuItem.TYPE_SEPARATOR:
                 if (convertView == null) {
-                    convertView = mInflater.inflate(R.layout.design_drawer_item_separator, parent, false);
+                    convertView = mInflater.inflate(
+                            R.layout.design_drawer_item_separator, parent, false);
                 }
                 break;
         }

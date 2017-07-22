@@ -1,4 +1,4 @@
-package com.andy.music.item;
+package com.andy.music.info;
 
 /**
  * 歌单列表

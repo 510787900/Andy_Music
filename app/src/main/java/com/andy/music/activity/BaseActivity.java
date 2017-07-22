@@ -3,16 +3,20 @@ package com.andy.music.activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.ServiceConnection;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.andy.music.R;
 import com.andy.music.fragment.BaseFragment;
 import com.andy.music.fragment.QuickControlsFragment;
+import com.andy.music.utils.SystemBarTintManager;
 
 /**
  * 设置Activity的基类，在此控制音乐播放状态
@@ -26,6 +30,7 @@ public class BaseActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showQuickControl(true);
+
         /*mToken = MusicPlayer.bindToService(this, this);
         mPlaybackStatus = new PlaybackStatus(this);
 
@@ -72,10 +77,7 @@ public class BaseActivity extends AppCompatActivity{
 
     }
 
-}
-
-/*public class BaseActivity extends AppCompatActivity implements ServiceConnection{
-    @Override
+    /*@Override
     public void onServiceConnected(ComponentName name, IBinder service) {
 
     }
@@ -83,7 +85,5 @@ public class BaseActivity extends AppCompatActivity{
     @Override
     public void onServiceDisconnected(ComponentName name) {
 
-    }
-
-
-}*/
+    }*/
+}

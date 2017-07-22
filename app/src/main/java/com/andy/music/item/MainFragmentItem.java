@@ -10,7 +10,7 @@ public class MainFragmentItem {
     public String title;
     /** 图片ID */
     public int avatar;
-    /** 该类型的数量 */
+    /** 该列表类型的数量 */
     public int count;
 
     public String getTitle() {

@@ -3,6 +3,7 @@ package com.andy.music.adapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
@@ -17,8 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.andy.music.R;
+import com.andy.music.activity.TabActivity;
 import com.andy.music.item.MainFragmentItem;
-import com.andy.music.item.Playlist;
+import com.andy.music.info.Playlist;
 import com.andy.music.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -155,30 +157,30 @@ public class MainFragmentAdapter extends RecyclerView.Adapter<MainFragmentAdapte
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-//                        Intent intent = null;
-                        String s = null;
+                        Intent intent = null;
                         switch (i) {
                             case 0:
-//                                intent = new Intent(mContext, TabActivity.class);
-//                                intent.putExtra("page_number", 0);
-                                s = "TabActivity *** 0";
+                                intent = new Intent(mContext, TabActivity.class);
+                                intent.putExtra("page_number", 0);
+                                mContext.startActivity(intent);
+//                                LogUtils.toast(mContext, "TabActivity *** 0");
                                 break;
                             case 1:
 //                                intent = new Intent(mContext, RecentActivity.class);
-                                s = "RecentActivity";
+                                LogUtils.toast(mContext, "RecentActivity");
                                 break;
                             case 2:
 //                                intent = new Intent(mContext, DownActivity.class);
-                                s = "DownActivity";
+                                LogUtils.toast(mContext, "DownActivity");
                                 break;
                             case 3:
-//                                intent = new Intent(mContext, TabActivity.class);
-//                                intent.putExtra("page_number", 1);
-                                s = "TabActivity *** 1";
+                                intent = new Intent(mContext, TabActivity.class);
+                                intent.putExtra("page_number", 1);
+                                mContext.startActivity(intent);
+//                                LogUtils.toast(mContext, "TabActivity *** 1");
                                 break;
                         }
 //                        mContext.startActivity(intent);
-                        LogUtils.toast(mContext,s);
                     }
                 }, 60);
             }

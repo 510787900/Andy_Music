@@ -12,7 +12,7 @@ import android.util.AttributeSet;
  * Created by Andy on 2017/7/6.
  */
 
-class WrapContentLinearLayoutManager extends LinearLayoutManager {
+public class WrapContentLinearLayoutManager extends LinearLayoutManager {
     public WrapContentLinearLayoutManager(Context context) {
         super(context);
     }

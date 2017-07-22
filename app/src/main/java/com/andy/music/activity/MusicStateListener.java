@@ -1,6 +1,7 @@
 package com.andy.music.activity;
 
 /**
+ * 播放状态的监听
  * Created by Andy on 2017/7/3.
  */
 

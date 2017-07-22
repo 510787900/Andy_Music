@@ -3,27 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.TabActivity">
 
-    <item android:id="@+id/bar_disco"
-        android:title="@string/actionbar_disco"
-        android:orderInCategory="70"
-        android:icon="@drawable/actionbar_discover"
-        app:showAsAction="always" />
-
-    <item android:id="@+id/bar_music"
-        android:title="@string/actionbar_music"
-        android:orderInCategory="80"
-        android:icon="@drawable/actionbar_music"
-        app:showAsAction="always" />
-
-    <item android:id="@+id/bar_friends"
-        android:title="@string/actionbar_friends"
-        android:orderInCategory="90"
-        android:icon="@drawable/actionbar_friends"
-        app:showAsAction="always" />
-
-    <item android:id="@+id/bar_search"
+    <item android:id="@+id/actionbar_search"
         android:title="@string/actionbar_search"
         android:icon="@drawable/actionbar_search"
         android:orderInCategory="100"

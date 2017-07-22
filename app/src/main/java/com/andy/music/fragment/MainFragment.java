@@ -14,18 +14,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.andy.music.MainApplication;
 import com.andy.music.R;
 import com.andy.music.adapter.MainFragmentAdapter;
 import com.andy.music.item.MainFragmentItem;
-import com.andy.music.item.Playlist;
+import com.andy.music.info.Playlist;
+import com.andy.music.provider.DownFileStore;
+import com.andy.music.provider.PlaylistInfo;
 import com.andy.music.utils.CommonUtils;
+import com.andy.music.utils.IConstants;
+import com.andy.music.utils.MusicUtils;
 import com.andy.music.widgit.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 本地界面，中间位置.分为本地音乐等(4个)、创建的歌单、喜欢的音乐、收藏的歌单
+ * 本地fragment
+ * MainActivity 的第二页.中间位置.
+ * 分为本地音乐等(4个)、创建的歌单、喜欢的音乐、收藏的歌单
  * Created by Andy on 2017/7/3.
  */
 
@@ -41,7 +48,7 @@ public class MainFragment extends BaseFragment {
     /** 本地音乐等4个列表的集合 */
     private List<MainFragmentItem> mList = new ArrayList<>();
     /** playlist 管理类 */
-//    private PlaylistInfo playlistInfo;
+    private PlaylistInfo playlistInfo;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -57,7 +64,7 @@ public class MainFragment extends BaseFragment {
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //TODO 初始化 playlist 管理类
-//        playlistInfo = PlaylistInfo.getInstance(mContext);
+        playlistInfo = PlaylistInfo.getInstance(mContext);
         if (CommonUtils.isLollipop() && ContextCompat.checkSelfPermission(mContext,
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) mContext,
@@ -110,20 +117,20 @@ public class MainFragment extends BaseFragment {
                 ArrayList results = new ArrayList();
                 setMusicInfo();
                 //TODO 获取创建和收藏的歌单信息
-//                ArrayList<Playlist> playlists = playlistInfo.getPlaylist();
-//                ArrayList<Playlist> netPlaylists = playlistInfo.getNetPlaylist();
-                ArrayList<Playlist> playlists = new ArrayList<Playlist>();
+                ArrayList<Playlist> playlists = playlistInfo.getPlaylist();
+                ArrayList<Playlist> netPlaylists = playlistInfo.getNetPlaylist();
+                /*ArrayList<Playlist> playlists = new ArrayList<Playlist>();
                 playlists.add(0,new Playlist(1, "我喜欢的音乐", 0, null, ""));
                 ArrayList<Playlist> netPlaylists = new ArrayList<Playlist>();
-                netPlaylists.add(0,new Playlist(1, "不如吃茶去", 17, null, "许嵩"));
+                netPlaylists.add(0,new Playlist(1, "不如吃茶去", 17, null, "许嵩"));*/
 
                 results.addAll(mList);
                 results.add(mContext.getResources().getString(R.string.created_playlists));
                 if (playlists != null && playlists.size() > 0) {
                     results.addAll(playlists);
                 }
+                results.add(mContext.getResources().getString(R.string.collect_playlists));
                 if (netPlaylists != null && netPlaylists.size() > 0) {
-                    results.add(mContext.getResources().getString(R.string.collect_playlists));
                     results.addAll(netPlaylists);
                 }
 
@@ -144,7 +151,7 @@ public class MainFragment extends BaseFragment {
         }.execute();
     }
 
-    /** 设置音乐overflow条目 */
+    /** 设置本地音乐等四个列表条目 */
     private void setMusicInfo() {
         if (CommonUtils.isLollipop() && ContextCompat
                 .checkSelfPermission(mContext, Manifest.permission.READ_EXTERNAL_STORAGE) !=
@@ -155,23 +162,27 @@ public class MainFragment extends BaseFragment {
         }
     }
 
-    /** 加载内容 */
+    /**
+     * 加载前四个列表内容
+     * @param has   是否有文件读取权限
+     */
     private void loadCount(boolean has) {
         int localMusicCount = 0, recentMusicCount = 0,downLoadCount = 0 ,artistsCount = 0;
-        //TODO 获取不同类型列表中的歌曲数量.has:是否有文件读取权限
-        /*if(has){
+        //TODO 获取不同类型列表中的歌曲数量.
+        if(has){
             try{
                 localMusicCount = MusicUtils.queryMusic(mContext,
                         IConstants.START_FROM_LOCAL).size();
-                recentMusicCount = TopTracksLoader.getCount(MainApplication.context,
-                        TopTracksLoader.QueryType.RecentSongs);
+                //TODO 最近播放歌曲
+                /*recentMusicCount = TopTracksLoader.getCount(MainApplication.context,
+                        TopTracksLoader.QueryType.RecentSongs);*/
                 downLoadCount = DownFileStore.getInstance(mContext)
                         .getDownLoadedListAll().size();
                 artistsCount = MusicUtils.queryArtist(mContext).size();
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }*/
+        }
         setInfo(mContext.getResources().getString(R.string.local_music),
                 localMusicCount, R.drawable.music_icn_local, 0);
         setInfo(mContext.getResources().getString(R.string.recent_play),
@@ -182,7 +193,13 @@ public class MainFragment extends BaseFragment {
                 artistsCount, R.drawable.music_icn_artist, 3);
     }
 
-    /** 为info设置数据，并放入mlistInfo */
+    /**
+     * 为info设置数据，并放入mlistInfo
+     * @param title     列表标题
+     * @param count     列表类型的歌曲数量
+     * @param id        图片ID
+     * @param i         列表集合的位置
+     */
     private void setInfo(String title, int count, int id, int i) {
         MainFragmentItem information = new MainFragmentItem();
         information.title = title;

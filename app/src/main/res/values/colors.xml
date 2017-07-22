@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--ToolBar-->
+    <!--ToolBar Red-->
     <color name="toolbar_color_red">#FFD20000</color>
-    <color name="color_blue">#3F51B5</color>
-    <color name="color_blue_Dark">#303F9F</color>
+    <color name="toolbar_color_red_Dark">#FF7E0000</color>
+
+    <!--ToolBar Blue-->
+    <color name="toolbar_color_blue">#3F51B5</color>
+    <color name="toolbar_color_blue_Dark">#303F9F</color>
 
     <!--主页面背景色-->
     <color name="normalBackground">#fff2f4f5</color>
@@ -15,5 +18,9 @@
     <color name="subtitle_color_gray">#FF757575</color>
 
     <color name="theme_color_common_section">#ffe6e8e9</color>
+
+    <!--歌曲列表主副标题颜色-->
+    <color name="listTextColor">#ff333333</color>
+    <color name="listSubTextColor">#ff888888</color>
 
 </resources>

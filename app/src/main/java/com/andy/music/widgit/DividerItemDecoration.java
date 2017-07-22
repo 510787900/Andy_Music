@@ -12,7 +12,7 @@ import android.view.View;
 import com.andy.music.R;
 
 /**
- * 分割线
+ * 分割线.分组fragment中
  * Created by Andy on 2017/7/5.
  */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {

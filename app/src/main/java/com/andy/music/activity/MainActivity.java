@@ -20,7 +20,7 @@ import com.andy.music.widgit.CustomViewPager;
 import com.andy.music.adapter.CustomViewPagerAdapter;
 import com.andy.music.adapter.LvMenuItemAdapter;
 import com.andy.music.fragment.FriendsFragment;
-import com.andy.music.fragment.TabNetPagerFragment;
+import com.andy.music.fragment.NetworkFragment;
 import com.andy.music.item.LvMenuItem;
 import com.andy.music.R;
 import com.andy.music.fragment.MainFragment;
@@ -29,26 +29,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 主列表Activity.
+ * 加载TabNetPagerFragment/MainFragment/FriendsFragment
+ * Created by Andy on 2017/7/6.
+ */
+
 public class MainActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//隐藏ActionBar区域
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);//隐藏ActionBar区域的标题
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initState();//沉浸式状态栏
-        initToolbar();//导航栏
-        setUpDrawer();//侧滑菜单
-        initAdapter();//导航栏滑动效果
+        initStatusbar();//沉浸式状态栏
+        initToolbar();  //导航栏
+        setUpDrawer();  //侧滑菜单
+        initAdapter();  //导航栏滑动效果
     }
 
-    /** 设置透明导航栏和状态栏，即沉浸式状态栏 */
-    private void initState() {
+    /** 设置透明导航栏和状态栏，即沉浸式状态栏.否则左侧滑无法全屏 */
+    private void initStatusbar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //透明导航栏。因为底部设置一个可控的音乐播放控件，因此此处注释
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            //透明底部菜单栏。因为底部设置一个可控的音乐播放控件，因此此处注释
+            /*getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
+
+            /*//setTranslucentStatus(true);透明状态栏(弃用方法)
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setStatusBarTintResource(R.color.theme_color_red);
+            SystemBarTintManager.SystemBarConfig config = tintManager.getConfig();*/
         }
     }
 
@@ -62,10 +74,7 @@ public class MainActivity extends BaseActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.fd);
         toolBar = (Toolbar) findViewById(R.id.toolbar);
         toolBar.setTitle("");
-        toolBar.setPadding(0,getStatusBarHeight(),0,0);
-//        toolBar.setTitleTextColor(Color.WHITE);
-//        titleName = getView(R.id.title_name);
-//        setSupportActionBar(toolBar);
+        toolBar.setPadding(0,getStatusBarHeight(),0,0);//以系统状态栏的高度作为上边界
         bar_menu = (ImageView) findViewById(R.id.bar_menu);
         bar_discover = (ImageView) findViewById(R.id.bar_discover);
         bar_music = (ImageView) findViewById(R.id.bar_music);
@@ -97,26 +106,20 @@ public class MainActivity extends BaseActivity {
                     drawerLayout.openDrawer(Gravity.LEFT);
                     break;
                 case R.id.bar_discover:
-//                    msg += "Click bar_discover";
-//                    toast(getApplicationContext(), msg);
                     customViewPager.setCurrentItem(0);
                     break;
                 case R.id.bar_music:
-//                    msg += "Click bar_music";
-//                    toast(getApplicationContext(), msg);
                     customViewPager.setCurrentItem(1);
                     break;
                 case R.id.bar_friends:
-//                    msg += "Click bar_friends";
-//                    toast(getApplicationContext(), msg);
                     customViewPager.setCurrentItem(2);
                     break;
                 case R.id.bar_search:
                     msg += "Click bar_search";
                     LogUtils.toast(getApplicationContext(), msg);
-//                    final Intent intent = new Intent(MainActivity.this, NetSearchWordsActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                    MainActivity.this.startActivity(intent);
+                    /*final Intent intent = new Intent(MainActivity.this, NetSearchWordsActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    MainActivity.this.startActivity(intent);*/
                     break;
             }
         }
@@ -194,10 +197,10 @@ public class MainActivity extends BaseActivity {
         tabs.add(bar_friends);
         customViewPager = (CustomViewPager) findViewById(R.id.main_viewpager);
         final MainFragment mainFragment = new MainFragment();
-        final TabNetPagerFragment tabNetPagerFragment = new TabNetPagerFragment();
+        final NetworkFragment networkFragment = new NetworkFragment();
         final FriendsFragment friendsFragment = new FriendsFragment();
         CustomViewPagerAdapter customViewPagerAdapter = new CustomViewPagerAdapter(getSupportFragmentManager());
-        customViewPagerAdapter.addFragment(tabNetPagerFragment);
+        customViewPagerAdapter.addFragment(networkFragment);
         customViewPagerAdapter.addFragment(mainFragment);
         customViewPagerAdapter.addFragment(friendsFragment);
         customViewPager.setAdapter(customViewPagerAdapter);
